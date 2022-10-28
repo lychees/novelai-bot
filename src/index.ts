@@ -75,6 +75,8 @@ export function apply(ctx: Context, config: Config) {
     .alias('nai')
     .userFields(['authority'])
     .shortcut('画画', { fuzzy: true })
+    .shortcut('Draw', { fuzzy: true })
+    .shortcut('Paint', { fuzzy: true })
     .shortcut('畫畫', { fuzzy: true })
     .shortcut('约稿', { fuzzy: true })
     .shortcut('約稿', { fuzzy: true })
