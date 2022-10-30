@@ -131,6 +131,8 @@ export async function login(ctx: Context): Promise<string> {
       timeout: 30000,
       key: await calcAccessKey(ctx.config.email, ctx.config.password),
     }).catch(NetworkError.catch({ 401: '.invalid-password' })).then(res => res.accessToken)
+  } else {
+    return ctx.config.token
   }
 }
 
@@ -182,4 +184,10 @@ export function resizeInput(size: Size): Size {
     const width = closestMultiple(height * aspectRatio)
     return { width, height }
   }
+}
+
+export function stripDataPrefix(base64: string) {
+  // workaround for different gradio versions
+  // https://github.com/koishijs/novelai-bot/issues/90
+  return base64.replace(/^data:image\/[\w-]+;base64,/, '')
 }
